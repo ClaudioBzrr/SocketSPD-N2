@@ -43,7 +43,7 @@ def listWatcher():
             print('Arquivo atualizado/criado')
 
 
-#Invocandoa  função que cria a pasta "shared"
+#Invocando a função que cria a pasta "shared"
 createMainFolder()
 
 #criando uma Thread e apontando o valor alvo para a função "listWatcher"
