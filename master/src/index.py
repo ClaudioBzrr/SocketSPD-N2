@@ -1,10 +1,12 @@
 import threading
 import time
-import os.path
+import os
 
+mainFolder = "C:/shared"
 
-
-
+def createMainFolder():
+    if not os.path.exists(mainFolder):
+        os.mkdir(mainFolder)
 
 def listWatcher():
     num = 1
@@ -23,14 +25,5 @@ def listWatcher():
             print('Arquivo criado')
 
 
+createMainFolder()
 threading.Thread(target=listWatcher).start()
-
-    
-
-
-
-
-
-
-
-    
