@@ -12,15 +12,15 @@ def listWatcher():
     num = 1
     while(num>0):
 
-        if(os.path.exists('src/list.spd')):
+        if(os.path.exists('list.spd')):
             time.sleep(2)
-            print('list.spd')
+            print('Aguardando mudanças...')
 
         elif FileNotFoundError:
             time.sleep(2)
-            print('O arquivo list.spd não existe')
+            print('O arquivo list.spd não existe ou foi excluído')
             print('Criando novo arquivo...')
-            createFile = open('src/list.spd', 'w')
+            createFile = open('list.spd', 'w')
             createFile.close()
             print('Arquivo criado')
 

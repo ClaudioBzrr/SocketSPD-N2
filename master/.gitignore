@@ -1,1 +1,6 @@
 /venv
+/dist
+/build
+/__pycache__
+index.spec
+
