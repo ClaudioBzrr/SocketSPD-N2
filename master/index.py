@@ -2,7 +2,31 @@ import threading
 import time
 import os
 
-mainFolder = "C:/shared"
+mainFolder = ""
+master = ""
+port1=""
+port2=""
+timesync = ""
+
+
+#Definindo as constantes do projeto que estão contidas dentro de "computers.spd", como a Pasta Shared por exemplo
+computers = open('computers.spd')
+for linha in computers:
+    
+    if '[FOLDER]' in linha:
+        mainFolder =  computers.readline().rstrip( '\n' )
+    elif '[MASTER]' in linha:
+        master =  computers.readline().rstrip( '\n' )
+    elif '[PORT1]' in linha:
+        port1 =  computers.readline().rstrip( '\n' )
+    elif '[PORT2]' in linha:
+        port2 =  computers.readline().rstrip( '\n' )
+    elif '[TIMESYNC]' in linha:
+        timesync =  int(computers.readline().rstrip( '\n' ))/1000
+
+computers.close()
+
+
 
 
 # Função que lista os arquivos dentro da pasta "shared"
@@ -30,12 +54,12 @@ def listWatcher():
     while(num>0):
 
         if(os.path.exists('list.spd')):
-            time.sleep(10)
+            time.sleep(timesync)
             listFiles()
             os.remove('list.spd')
 
         elif FileNotFoundError:
-            print('O arquivo list.spd não existe ou foi excluído')
+            print('O arquivo list.spd não existe ou está sendo atualizado')
             print('Atualizando/ criando novo arquivo...')
             createFile = open('list.spd', 'w')
             createFile.close()
@@ -48,3 +72,6 @@ createMainFolder()
 
 #criando uma Thread e apontando o valor alvo para a função "listWatcher"
 threading.Thread(target=listWatcher).start()
+
+
+
