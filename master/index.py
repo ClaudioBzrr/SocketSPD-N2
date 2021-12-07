@@ -3,6 +3,8 @@ import time
 import os
 import socket
 
+
+#Constantes do projeto
 mainFolder = ""
 master = ""
 port1=""
@@ -10,7 +12,7 @@ port2=""
 timesync = ""
 
 
-#Definindo as constantes do projeto que estão contidas dentro de "computers.spd", como a Pasta Shared por exemplo
+#Definindo os valores das constantes do projeto que estão contidas dentro de "computers.spd", comoo caminho da Pasta Shared, por exemplo.
 computers = open('computers.spd')
 for linha in computers:
 
@@ -58,19 +60,42 @@ def listWatcher():
             os.remove('list.spd')
 
         elif FileNotFoundError:
-            print('O arquivo list.spd não existe ou está sendo atualizado')
-            print('Atualizando/ criando novo arquivo...')
+
             createFile = open('list.spd', 'w')
             createFile.close()
             listFiles()
-            print('Arquivo atualizado/criado')
+            print('Arquivo "list.spd" atualizado ...')
 
 
 
 #Invocando a função que cria a pasta "shared"
 createMainFolder()
 
-#criando uma Thread e apontando o valor alvo para a função "listWatcher"
+
+
+
+
+server  =  socket.socket(socket.AF_INET,socket.SOCK_STREAM)
+server.bind(('localhost',3333))
+
+#Iniciando a instância do socket server : 
+    
+
+
+def createServer():
+    server.listen()
+    connection, address =  server.accept()
+    print("socket server em execução")
+    fileName = connection.recv(1024).decode()
+    
+    with open (fileName, 'rb') as file : 
+        for data in file.readlines():
+            connection.send(data)
+        print('arquivo enviado')
+
+
+#criando uma Thread e apontando o valor alvo para as suas respectivas funções
+threading.Thread(target=createServer).start()
 threading.Thread(target=listWatcher).start()
 
 
