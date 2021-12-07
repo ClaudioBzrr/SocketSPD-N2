@@ -16,8 +16,5 @@ Ultilize o commando abaixo para gerar o arquivo executável que ficará dentro d
 pyinstaller --onefile --exclude-module _bootlocale -c index.py
 ```
 
-## Contribuir
-Pull requests e estrelas para o projeto são sempre bem-vindos.
-
 ## Licença
 [MIT](https://choosealicense.com/licenses/mit/)
