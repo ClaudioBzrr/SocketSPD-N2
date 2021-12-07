@@ -1,6 +1,6 @@
 # Sobre o projeto
 
-Esse projeto tem como objetivo aplicar o conhecimento de 
+Esse projeto tem como objetivo aplicar o conhecimento de Sockets e Threads na disciplina de  Sitemas paralelos e distribuídos.
 
 ## Installation
 
